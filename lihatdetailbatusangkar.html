@@ -24,12 +24,18 @@
       padding: 10px 20px;
       z-index: 1000;
     }
+
     .navbar .brand {
       font-size: 1.8em;
       font-weight: bold;
       color: white;
     }
-    .navbar .nav-links a {
+
+    .nav-links {
+      display: flex;
+    }
+
+    .nav-links a {
       margin-left: 20px;
       color: white;
       text-decoration: none;
@@ -38,7 +44,8 @@
       border-radius: 5px;
       transition: 0.3s;
     }
-    .navbar .nav-links a:hover {
+
+    .nav-links a:hover {
       background-color: #A7C957;
     }
 
@@ -198,6 +205,19 @@
     }
 
     @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .nav-links {
+        flex-direction: column;
+        width: 100%;
+      }
+      .nav-links a {
+        margin-left: 0;
+        width: 100%;
+        display: block;
+      }
       .container {
         flex-direction: column;
         padding: 20px;
@@ -215,13 +235,14 @@
   </style>
 </head>
 <body>
+
   <nav class="navbar">
     <div class="brand">deRos Resort & Cafe</div>
     <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="Resort.html">Resort</a>
-        <a href="contact.html">Contact</a>
-      </div>
+      <a href="index.html">Home</a>
+      <a href="Resort.html">Resort</a>
+      <a href="contact.html">Contact</a>
+    </div>
   </nav>
 
   <div class="container">
@@ -267,7 +288,7 @@
   </div>
 
   <a href="https://wa.me/628129026927?text=Halo,%20saya%20tertarik%20dengan%20kamar%20Batu%20Sangkar%20di%20deRos%20Resort.%20Apakah%20masih%20tersedia%20untuk%20[tanggal]?" id="whatsapp-float" target="_blank">
-    <img src="whaatsaap.png" alt="WhatsApp" />
+    <img src="iconpesanresort/whaatsaap.png" alt="WhatsApp" />
     <span>Hubungi Kami</span>
   </a>
 
@@ -296,7 +317,6 @@
       window.open(waLink, '_blank');
     });
   </script>
+
 </body>
-
 </html>
-
