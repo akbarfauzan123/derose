@@ -2,309 +2,192 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Batu Sangkar | deRos Resort & Cafe</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <title>Lihat Detail Batusangkar | deRos Resort & Cafe</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Poppins', sans-serif;
-      background-color: #FAF3E0;
+      margin: 0;
+      background-color: #FEF9F6;
       color: #333;
     }
 
+    /* NAVIGASI */
     .navbar {
-      position: fixed;
+      position: sticky;
       top: 0;
-      width: 100%;
       background-color: #2E8B57;
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 10px 20px;
-      z-index: 1000;
+      z-index: 999;
     }
-
     .navbar .brand {
       font-size: 1.8em;
       font-weight: bold;
       color: white;
     }
-
-    .nav-links {
-      display: ;
-    }
-
-    .nav-links a {
-      margin-left: 20px;
+    .navbar .nav-links a {
       color: white;
+      margin-left: 20px;
       text-decoration: none;
       font-weight: 600;
-      padding: 10px 18px;
+      padding: 10px;
       border-radius: 5px;
       transition: 0.3s;
     }
-
-    .nav-links a:hover {
+    .navbar .nav-links a:hover {
       background-color: #A7C957;
     }
 
-    .container {
-      margin-top: 100px;
-      display: flex;
-      flex-wrap: wrap;
-      padding: 30px;
-      gap: 40px;
-      max-width: 1200px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .gallery {
-      flex: 1 1 55%;
-      display: flex;
-      gap: 15px;
-    }
-
-    .main-image {
+    /* HERO IMAGE */
+    .hero {
       width: 100%;
-      height: 500px;
-      object-fit: cover;
-      border-radius: 10px;
-    }
-
-    .main-image-container {
-      flex: 1;
-    }
-
-    .thumbnails {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      overflow-y: auto;
-      max-height: 500px;
-      width: 120px;
-    }
-
-    .thumbnails img {
-      width: 100%;
-      height: 90px;
-      object-fit: cover;
-      border-radius: 8px;
-      cursor: pointer;
-      border: 2px solid transparent;
-      transition: 0.3s;
-    }
-
-    .thumbnails img:hover {
-      border: 2px solid #2E8B57;
-    }
-
-    .info-box {
-      flex: 1 1 35%;
-      background-color: white;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-
-    .info-box h2 {
-      color: #2E8B57;
-      margin-bottom: 10px;
-    }
-
-    .price {
-      font-size: 1.3em;
-      font-weight: bold;
-      color: #E85D04;
-      margin-bottom: 15px;
-    }
-
-    .info-box input, .info-box textarea {
-      width: 100%;
-      margin-bottom: 12px;
-      padding: 10px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      font-family: inherit;
-    }
-
-    .info-box label {
-      font-weight: bold;
-      font-size: 0.9em;
-    }
-
-    .info-box button {
-      background-color: #2E8B57;
-      color: white;
-      padding: 12px;
-      width: 100%;
-      border: none;
-      border-radius: 8px;
-      font-weight: bold;
-      font-size: 1em;
-      cursor: pointer;
-      margin-top: 10px;
-    }
-
-    .info-box button:hover {
-      background-color: #24784f;
-    }
-
-    .room-description {
-      max-width: 1100px;
-      margin: 40px auto;
-      padding: 0 30px;
-    }
-
-    .room-description h3 {
-      color: #2E8B57;
-      margin-bottom: 10px;
-    }
-
-    .room-description ul {
-      list-style: none;
-      padding-left: 0;
-    }
-
-    .room-description ul li::before {
-      content: "\2714";
-      margin-right: 8px;
-      color: #2E8B57;
-    }
-
-    #whatsapp-float {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      z-index: 9999;
+      height: 50vh;
+      background: url('batusangkar1.jpg') center/cover no-repeat;
       display: flex;
       align-items: center;
-      background-color: #25D366;
+      justify-content: center;
       color: white;
-      padding: 10px 16px;
-      border-radius: 50px;
-      text-decoration: none;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    #whatsapp-float img {
-      width: 24px;
-      height: 24px;
-      margin-right: 8px;
-    }
-
-    #whatsapp-float span {
+      font-size: 2.5em;
       font-weight: bold;
-      font-size: 14px;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
     }
 
-    #whatsapp-float:hover {
-      transform: scale(1.05);
+    /* KONTEN */
+    .container {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .section-title {
+      font-size: 1.6em;
+      margin-bottom: 20px;
+      color: #2E8B57;
+    }
+
+    .description {
+      font-size: 1.1em;
+      line-height: 1.7;
+    }
+
+    .facilities ul {
+      list-style-type: square;
+      padding-left: 20px;
+    }
+
+    /* GALERI GAMBAR */
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .gallery img {
+      width: calc(33.333% - 10px);
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
     }
 
     @media (max-width: 768px) {
-      .container {
-        flex-direction: column;
+      .hero {
+        font-size: 1.8em;
+        height: 40vh;
+        text-align: center;
         padding: 20px;
       }
-      .gallery {
-        flex-direction: column;
-      }
-      .thumbnails {
-        flex-direction: row;
+
+      .gallery img {
         width: 100%;
-        max-height: none;
-        overflow-x: auto;
+        height: auto;
       }
+
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .navbar .nav-links {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .navbar .nav-links a {
+        margin: 5px 0;
+      }
+    }
+
+    /* TOMBOL WHATSAPP */
+    .whatsapp-button {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 12px 25px;
+      background-color: #25D366;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 8px;
+      font-size: 1em;
+      transition: background-color 0.3s ease;
+    }
+
+    .whatsapp-button:hover {
+      background-color: #1ebe5d;
     }
   </style>
 </head>
 <body>
 
-  <nav class="navbar">
-    <div class="brand">deRos Resort & Cafe</div>
+  <div class="navbar">
+    <div class="brand">deRos Resort</div>
     <div class="nav-links">
       <a href="index.html">Home</a>
-      <a href="Resort.html">Resort</a>
+      <a href="resort.html">Resort</a>
       <a href="contact.html">Contact</a>
     </div>
-  </nav>
+  </div>
+
+  <div class="hero">
+    Kamar Batusangkar
+  </div>
 
   <div class="container">
+    <div class="section-title">Tentang Kamar</div>
+    <p class="description">
+      Kamar Batusangkar adalah pilihan sempurna untuk Anda yang mendambakan ketenangan dan kenyamanan. Interior elegan dengan sentuhan alami akan memberikan pengalaman menginap yang tak terlupakan di tengah nuansa asri deRos Resort.
+    </p>
+
+    <div class="section-title">Galeri Kamar</div>
     <div class="gallery">
-      <div class="main-image-container">
-        <img id="mainImage" src="batusangkar.png" alt="Batu Sangkar" class="main-image" />
-      </div>
-      <div class="thumbnails">
-        <img src="batusangkar1.png" onclick="changeImage(this.src)" />
-        <img src="batusangkar2.png" onclick="changeImage(this.src)" />
-        <img src="batusangkar3.png" onclick="changeImage(this.src)" />
-        <img src="batusangkar4.png" onclick="changeImage(this.src)" />
-      </div>
+      <img src="batusangkar1.jpg" alt="Kamar Batusangkar 1" />
+      <img src="batusangkar2.jpg" alt="Kamar Batusangkar 2" />
+      <img src="batusangkar3.jpg" alt="Kamar Batusangkar 3" />
+      <img src="batusangkar4.jpg" alt="Kamar Batusangkar 4" />
+      <img src="batusangkar5.jpg" alt="Kamar Batusangkar 5" />
     </div>
 
-    <div class="info-box">
-      <h2>Batu Sangkar</h2>
-      <div class="price">Rp 750.000 / hari</div>
-
-      <label>Tanggal Check-in:</label>
-      <input type="date" id="checkin" />
-
-      <label>Tanggal Check-out:</label>
-      <input type="date" id="checkout" />
-
-      <label>Permintaan Tambahan:</label>
-      <textarea id="request" rows="4" placeholder="Contoh: ekstra selimut, view taman, dll"></textarea>
-
-      <button id="wa-button">Pesan via WhatsApp</button>
-    </div>
-  </div>
-
-  <div class="room-description">
-    <h3>Fasilitas:</h3>
-    <ul>
-      <li>WiFi Cepat</li>
-      <li>AC dan Kipas Angin</li>
-      <li>Water Heater</li>
-      <li>TV dan Balkon</li>
-      <li>View Pegunungan</li>
+    <div class="section-title" style="margin-top: 40px;">Fasilitas</div>
+    <ul class="description">
+      <li>1 Queen Bed + AC + Smart TV</li>
+      <li>Kamar Mandi Dalam + Water Heater</li>
+      <li>WiFi Gratis & Breakfast 2 Pax</li>
+      <li>Pemandangan Alam Asri</li>
+      <li>Area Parkir Luas</li>
     </ul>
-    <p>Kamar Batu Sangkar memiliki gaya arsitektur tradisional yang nyaman dan natural, cocok untuk menikmati kesejukan udara pegunungan di Ciawi-Bogor. Cocok untuk pasangan maupun keluarga kecil.</p>
+
+    <a 
+      class="whatsapp-button" 
+      href="https://wa.me/6281234567890?text=Halo,%20saya%20tertarik%20dengan%20Kamar%20Batusangkar%20di%20deRos%20Resort.%20Apakah%20masih%20tersedia%3F%20Saya%20berencana%20booking%20untuk%20%5Btanggal%5D.%20Terima%20kasih!"
+      target="_blank"
+    >
+      Pesan Sekarang via WhatsApp
+    </a>
   </div>
-
-  <a href="https://wa.me/628129026927?text=Halo,%20saya%20tertarik%20dengan%20kamar%20Batu%20Sangkar%20di%20deRos%20Resort.%20Apakah%20masih%20tersedia%20untuk%20[tanggal]?" id="whatsapp-float" target="_blank">
-    <img src="whaatsaap.png" alt="WhatsApp" />
-    <span>Hubungi Kami</span>
-  </a>
-
-  <script>
-    function changeImage(src) {
-      document.getElementById('mainImage').src = src;
-    }
-
-    document.getElementById('wa-button').addEventListener('click', function (e) {
-      const checkin = document.getElementById('checkin');
-      const checkout = document.getElementById('checkout');
-      const request = document.getElementById('request').value.trim();
-
-      if (!checkin.value || !checkout.value) {
-        if (!checkin.value) checkin.style.border = '2px solid red';
-        if (!checkout.value) checkout.style.border = '2px solid red';
-        alert('Mohon isi tanggal Check-in dan Check-out terlebih dahulu.');
-        return;
-      }
-
-      checkin.style.border = '';
-      checkout.style.border = '';
-
-      const text = `Halo, saya ingin booking kamar Batu Sangkar dari tanggal ${checkin.value} sampai ${checkout.value}. ${request ? 'Permintaan tambahan: ' + request : ''}`;
-      const waLink = `https://wa.me/628129026927?text=${encodeURIComponent(text)}`;
-      window.open(waLink, '_blank');
-    });
-  </script>
 
 </body>
 </html>
-
