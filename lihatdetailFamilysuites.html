@@ -2,14 +2,17 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Talawi - Family Suites | deRos Resort & Cafe</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+  <title>Family Suites | deRos Resort & Cafe</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+      * {
+      margin: 0; 
+      padding: 0;
+      box-sizing: border-box;
+    }
     body {
       font-family: 'Poppins', sans-serif;
-      background-color: #FAF3E0;
+      background-color: #fff;
       color: #333;
     }
     .navbar {
@@ -18,8 +21,8 @@
       width: 100%;
       background-color: #2E8B57;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       padding: 10px 20px;
       z-index: 1000;
     }
@@ -35,229 +38,137 @@
       font-weight: 600;
       padding: 10px 18px;
       border-radius: 5px;
-      transition: 0.3s;
+      transition: all 0.3s;
     }
     .navbar .nav-links a:hover {
       background-color: #A7C957;
-    }
-    .container {
-      margin-top: 100px;
-      display: flex;
-      flex-wrap: wrap;
-      padding: 30px;
-      gap: 40px;
-      max-width: 1200px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .gallery {
-      flex: 1 1 55%;
-      display: flex;
-      gap: 15px;
-    }
-    .main-image {
-      width: 100%;
-      height: 500px;
-      object-fit: cover;
-      border-radius: 10px;
-    }
-    .main-image-container { flex: 1; }
-    .thumbnails {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      overflow-y: auto;
-      max-height: 500px;
-      width: 120px;
-    }
-    .thumbnails img {
-      width: 100%;
-      height: 90px;
-      object-fit: cover;
-      border-radius: 8px;
-      cursor: pointer;
-      border: 2px solid transparent;
-      transition: 0.3s;
-    }
-    .thumbnails img:hover {
-      border: 2px solid #2E8B57;
-    }
-    .info-box {
-      flex: 1 1 35%;
-      background-color: white;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-    .info-box h2 { color: #2E8B57; margin-bottom: 10px; }
-    .price {
-      font-size: 1.3em;
-      font-weight: bold;
-      color: #E85D04;
-      margin-bottom: 15px;
-    }
-    .info-box input, .info-box textarea {
-      width: 100%;
-      margin-bottom: 12px;
-      padding: 10px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      font-family: inherit;
-    }
-    .info-box label {
-      font-weight: bold;
-      font-size: 0.9em;
-    }
-    .info-box button {
-      background-color: #2E8B57;
       color: white;
-      padding: 12px;
-      width: 100%;
-      border: none;
-      border-radius: 8px;
-      font-weight: bold;
-      font-size: 1em;
-      cursor: pointer;
-      margin-top: 10px;
     }
-    .info-box button:hover {
-      background-color: #24784f;
-    }
-    .room-description {
-      max-width: 1100px;
-      margin: 40px auto;
-      padding: 0 30px;
-    }
-    .room-description h3 {
-      color: #2E8B57;
-      margin-bottom: 10px;
-    }
-    .room-description ul {
-      list-style: none;
-      padding-left: 0;
-    }
-    .room-description ul li::before {
-      content: "\2714";
-      margin-right: 8px;
-      color: #2E8B57;
-    }
-    #whatsapp-float {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      z-index: 9999;
+    .hero {
+      background: url('familysuites.png') center/cover no-repeat;
+      height: 50vh;
       display: flex;
       align-items: center;
+      justify-content: center;
+      color: white;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+      font-size: 2.5em;
+      font-weight: bold;
+      margin-top: 60px;
+    }
+    .container {
+      padding: 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+    .section-title {
+      font-size: 1.8em;
+      margin: 20px 0 10px;
+      color: #2E8B57;
+      font-weight: 600;
+    }
+    .description {
+      font-size: 1.1em;
+      margin-bottom: 20px;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+    .gallery img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+      transition: transform 0.3s ease;
+    }
+    .gallery img:hover {
+      transform: scale(1.03);
+    }
+    ul.facilities {
+      margin: 15px 0;
+      padding-left: 20px;
+    }
+    ul.facilities li {
+      margin-bottom: 8px;
+    }
+    .whatsapp-btn {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 14px 25px;
       background-color: #25D366;
       color: white;
-      padding: 10px 16px;
-      border-radius: 50px;
-      text-decoration: none;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    #whatsapp-float img {
-      width: 24px;
-      height: 24px;
-      margin-right: 8px;
-    }
-    #whatsapp-float span {
+      text-align: center;
+      font-size: 1em;
       font-weight: bold;
-      font-size: 14px;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
     }
-    #whatsapp-float:hover {
-      transform: scale(1.05);
+    .whatsapp-btn:hover {
+      background-color: #1ebe5d;
     }
     @media (max-width: 768px) {
-      .container {
+      .navbar {
         flex-direction: column;
-        padding: 20px;
+        align-items: flex-start;
       }
-      .gallery {
-        flex-direction: column;
-      }
-      .thumbnails {
+      .navbar .nav-links {
+        display: flex;
         flex-direction: row;
-        width: 100%;
-        max-height: none;
-        overflow-x: auto;
+        margin-top: 10px;
+      }
+      .navbar .nav-links a {
+        margin-left: 0;
+        margin-right: 20px;
       }
     }
   </style>
 </head>
 <body>
-  <nav class="navbar">
+  <div class="navbar">
     <div class="brand">deRos Resort & Cafe</div>
     <div class="nav-links">
-        <a href="../index.html">Home</a>
-        <a href="../Resort.html">Resort</a>
-        <a href="../contact.html">Contact</a>
-      </div>
-  </nav>
+      <a href="index.html">Home</a>
+      <a href="Resort.html">Resort</a>
+      <a href="Contact.html">Contact</a>
+    </div>
+  </div>
+
+  <div class="hero">Family Suites</div>
+
   <div class="container">
-    <div class="gallery">
-      <div class="main-image-container">
-        <img id="mainImage" src="talawifamilysuites/talawideluxeFamilysuites.jpg" alt="Talawi Family Suite" class="main-image" />
-      </div>
-      <div class="thumbnails">
-        <img src="talawifamilysuites/talawideluxeFamilysuites-4.jpg" onclick="changeImage(this.src)" />
-        <img src="talawifamilysuites/talawideluxeFamilysuites-6.jpg" onclick="changeImage(this.src)" />
-        <img src="talawifamilysuites/talawideluxeFamilysuites-8.jpg" onclick="changeImage(this.src)" />
-        <img src="talawifamilysuites/talawideluxeFamilysuites-9.jpg" onclick="changeImage(this.src)" />
-        <img src="talawifamilysuites/talawideluxeFamilysuites-11.jpg" onclick="changeImage(this.src)" />
-        <img src="talawifamilysuites/talawideluxeFamilysuites-13.jpg" onclick="changeImage(this.src)" />
-        <img src="talawifamilysuites/talawideluxeFamilysuites-15.jpg" onclick="changeImage(this.src)" />
-      </div>
-    </div>
-    <div class="info-box">
-      <h2>Talawi - Family Suites</h2>
-      <div class="price">Rp 3.500.000 / hari</div>
-      <label>Tanggal Check-in:</label>
-      <input type="date" id="checkin" />
-      <label>Tanggal Check-out:</label>
-      <input type="date" id="checkout" />
-      <label>Permintaan Tambahan:</label>
-      <textarea id="request" rows="4" placeholder="Contoh: ekstra kasur, connecting room, dll"></textarea>
-      <button id="wa-button">Pesan via WhatsApp</button>
-    </div>
-  </div>
-  <div class="room-description">
-    <h3>Fasilitas:</h3>
-    <ul>
-      <li>2 Kamar Tidur (Double + Twin)</li>
-      <li>Kamar Mandi dengan Bathtub</li>
-      <li>Ruang Keluarga dan Meja Makan</li>
-      <li>Smart TV dan WiFi</li>
-      <li>Balkon dengan View Alam</li>
-    </ul>
-    <p>
-      Talawi Family Suites cocok untuk keluarga besar yang ingin menginap dengan nyaman dan luas. Dirancang dengan gaya modern tropis yang tetap menyatu dengan alam.
+    <div class="section-title">Tentang Kamar</div>
+    <p class="description">
+      Family Suites adalah pilihan ideal untuk keluarga besar atau rombongan. Dilengkapi dengan dua ruang tidur, ruang tengah, dan balkon pribadi yang menghadap langsung ke alam terbuka.
     </p>
+
+    <div class="section-title">Galeri</div>
+    <div class="gallery">
+      <img src="familysuites1.png" alt="Family Suites 1">
+      <img src="familysuites2.png" alt="Family Suites 2">
+      <img src="familysuites3.png" alt="Family Suites 3">
+      <img src="familysuites4.png" alt="Family Suites 4">
+      <img src="familysuites5.png" alt="Family Suites 5">
+    </div>
+
+    <div class="section-title">Fasilitas</div>
+    <ul class="facilities">
+      <li>2 Queen Bed + 1 Sofa Bed</li>
+      <li>AC di setiap ruangan</li>
+      <li>Smart TV + Meja Makan</li>
+      <li>Dapur kecil & kulkas</li>
+      <li>Kamar mandi dalam dengan water heater</li>
+      <li>Balkon dengan pemandangan alam</li>
+      <li>WiFi gratis dan sarapan</li>
+      <li>Parkir pribadi luas</li>
+    </ul>
+
+    <a class="whatsapp-btn" href="https://wa.me/628129026927?text=Halo,%20saya%20tertarik%20dengan%20Family%20Suites%20di%20deRos%20Resort.%20Apakah%20masih%20tersedia?%20Saya%20berencana%20booking%20untuk%20[tanggal]." target="_blank">
+      Pesan Sekarang via WhatsApp
+    </a>
   </div>
-  <a href="#" id="whatsapp-float" target="_blank">
-    <img src="iconpesanresort/whaatsaap.png" alt="WhatsApp" />
-    <span>Hubungi Kami</span>
-  </a>
-  <script>
-    function changeImage(src) {
-      document.getElementById('mainImage').src = src;
-    }
-    document.getElementById('wa-button').addEventListener('click', function () {
-      const checkin = document.getElementById('checkin');
-      const checkout = document.getElementById('checkout');
-      const request = document.getElementById('request').value.trim();
-      if (!checkin.value || !checkout.value) {
-        if (!checkin.value) checkin.style.border = '2px solid red';
-        if (!checkout.value) checkout.style.border = '2px solid red';
-        alert('Mohon isi tanggal Check-in dan Check-out terlebih dahulu.');
-        return;
-      }
-      checkin.style.border = '';
-      checkout.style.border = '';
-      const text = `Halo, saya ingin booking Talawi Family Suite dari ${checkin.value} sampai ${checkout.value}. ${request ? 'Permintaan tambahan: ' + request : ''}`;
-      const waLink = `https://wa.me/628129026927?text=${encodeURIComponent(text)}`;
-      window.open(waLink, '_blank');
-    });
-  </script>
 </body>
 </html>
