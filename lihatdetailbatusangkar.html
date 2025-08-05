@@ -2,147 +2,129 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-  <title>Lihat Detail Batusangkar | deRos Resort & Cafe</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+  <title>Kamar Batusangkar | deRos Resort & Cafe</title>
   <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
     body {
       font-family: 'Poppins', sans-serif;
-      margin: 0;
-      background-color: #FEF9F6;
+      background-color: #fff;
       color: #333;
+      line-height: 1.6;
     }
-
-    /* NAVIGASI */
     .navbar {
-      position: sticky;
-      top: 0;
       background-color: #2E8B57;
+      padding: 15px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 10px 20px;
-      z-index: 999;
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
     .navbar .brand {
-      font-size: 1.8em;
+      font-size: 1.6em;
+      color: #fff;
       font-weight: bold;
-      color: white;
     }
     .navbar .nav-links a {
-      color: white;
-      margin-left: 20px;
+      color: #fff;
       text-decoration: none;
-      font-weight: 600;
-      padding: 10px;
-      border-radius: 5px;
-      transition: 0.3s;
+      margin-left: 15px;
+      font-weight: 500;
     }
-    .navbar .nav-links a:hover {
-      background-color: #A7C957;
-    }
-
-    /* HERO IMAGE */
     .hero {
-      width: 100%;
+      background: url('batusangkar-cover.jpg') center/cover no-repeat;
       height: 50vh;
-      background: url('batusangkar1.jpg') center/cover no-repeat;
       display: flex;
       align-items: center;
       justify-content: center;
       color: white;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
       font-size: 2.5em;
       font-weight: bold;
-      text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
     }
-
-    /* KONTEN */
     .container {
-      padding: 40px 20px;
-      max-width: 1000px;
+      padding: 20px;
+      max-width: 1200px;
       margin: auto;
     }
-
     .section-title {
-      font-size: 1.6em;
-      margin-bottom: 20px;
+      font-size: 1.8em;
+      margin: 20px 0 10px;
       color: #2E8B57;
+      font-weight: 600;
     }
-
     .description {
       font-size: 1.1em;
-      line-height: 1.7;
+      margin-bottom: 20px;
     }
-
-    .facilities ul {
-      list-style-type: square;
-      padding-left: 20px;
-    }
-
-    /* GALERI GAMBAR */
     .gallery {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
       margin-top: 20px;
     }
-
     .gallery img {
-      width: calc(33.333% - 10px);
-      height: 200px;
+      width: 100%;
+      height: 180px;
       object-fit: cover;
-      border-radius: 8px;
+      border-radius: 10px;
+      transition: transform 0.3s ease;
     }
-
-    @media (max-width: 768px) {
+    .gallery img:hover {
+      transform: scale(1.03);
+    }
+    ul.facilities {
+      margin: 15px 0;
+      padding-left: 20px;
+    }
+    ul.facilities li {
+      margin-bottom: 8px;
+    }
+    .whatsapp-btn {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 14px 25px;
+      background-color: #25D366;
+      color: white;
+      text-align: center;
+      font-size: 1em;
+      font-weight: bold;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+    .whatsapp-btn:hover {
+      background-color: #1ebe5d;
+    }
+    @media screen and (max-width: 768px) {
       .hero {
+        height: 35vh;
         font-size: 1.8em;
-        height: 40vh;
         text-align: center;
-        padding: 20px;
+        padding: 0 10px;
       }
-
-      .gallery img {
-        width: 100%;
-        height: auto;
-      }
-
       .navbar {
         flex-direction: column;
         align-items: flex-start;
       }
-
       .navbar .nav-links {
         display: flex;
         flex-direction: column;
         width: 100%;
       }
-
       .navbar .nav-links a {
         margin: 5px 0;
       }
     }
-
-    /* TOMBOL WHATSAPP */
-    .whatsapp-button {
-      display: inline-block;
-      margin-top: 30px;
-      padding: 12px 25px;
-      background-color: #25D366;
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 8px;
-      font-size: 1em;
-      transition: background-color 0.3s ease;
-    }
-
-    .whatsapp-button:hover {
-      background-color: #1ebe5d;
-    }
   </style>
 </head>
 <body>
-
   <div class="navbar">
     <div class="brand">deRos Resort</div>
     <div class="nav-links">
@@ -152,42 +134,35 @@
     </div>
   </div>
 
-  <div class="hero">
-    Kamar Batusangkar
-  </div>
+  <div class="hero">Kamar Batusangkar</div>
 
   <div class="container">
     <div class="section-title">Tentang Kamar</div>
     <p class="description">
-      Kamar Batusangkar adalah pilihan sempurna untuk Anda yang mendambakan ketenangan dan kenyamanan. Interior elegan dengan sentuhan alami akan memberikan pengalaman menginap yang tak terlupakan di tengah nuansa asri deRos Resort.
+      Kamar Batusangkar menawarkan kenyamanan modern dengan sentuhan tradisional. Cocok untuk pasangan atau keluarga kecil yang ingin bersantai di tengah alam.
     </p>
 
-    <div class="section-title">Galeri Kamar</div>
+    <div class="section-title">Galeri</div>
     <div class="gallery">
-      <img src="batusangkar1.jpg" alt="Kamar Batusangkar 1" />
-      <img src="batusangkar2.jpg" alt="Kamar Batusangkar 2" />
-      <img src="batusangkar3.jpg" alt="Kamar Batusangkar 3" />
-      <img src="batusangkar4.jpg" alt="Kamar Batusangkar 4" />
-      <img src="batusangkar5.jpg" alt="Kamar Batusangkar 5" />
+      <img src="batusangkar1.jpg" alt="Foto Kamar 1">
+      <img src="batusangkar2.jpg" alt="Foto Kamar 2">
+      <img src="batusangkar3.jpg" alt="Foto Kamar 3">
+      <img src="batusangkar4.jpg" alt="Foto Kamar 4">
+      <img src="batusangkar5.jpg" alt="Foto Kamar 5">
     </div>
 
-    <div class="section-title" style="margin-top: 40px;">Fasilitas</div>
-    <ul class="description">
-      <li>1 Queen Bed + AC + Smart TV</li>
-      <li>Kamar Mandi Dalam + Water Heater</li>
-      <li>WiFi Gratis & Breakfast 2 Pax</li>
-      <li>Pemandangan Alam Asri</li>
-      <li>Area Parkir Luas</li>
+    <div class="section-title">Fasilitas</div>
+    <ul class="facilities">
+      <li>1 Queen Bed, AC, Smart TV</li>
+      <li>Kamar mandi dalam dengan water heater</li>
+      <li>WiFi gratis dan sarapan</li>
+      <li>Pemandangan alam yang indah</li>
+      <li>Area parkir pribadi</li>
     </ul>
 
-    <a 
-      class="whatsapp-button" 
-      href="https://wa.me/6281234567890?text=Halo,%20saya%20tertarik%20dengan%20Kamar%20Batusangkar%20di%20deRos%20Resort.%20Apakah%20masih%20tersedia%3F%20Saya%20berencana%20booking%20untuk%20%5Btanggal%5D.%20Terima%20kasih!"
-      target="_blank"
-    >
+    <a class="whatsapp-btn" href="https://wa.me/6281234567890?text=Halo,%20saya%20tertarik%20dengan%20Kamar%20Batusangkar.%20Apakah%20masih%20tersedia?%20Saya%20berencana%20booking%20untuk%20[tanggal]." target="_blank">
       Pesan Sekarang via WhatsApp
     </a>
   </div>
-
 </body>
 </html>
