@@ -25,16 +25,21 @@
       position: sticky;
       top: 0;
       z-index: 100;
+      flex-wrap: wrap;
     }
     .navbar .brand {
       font-size: 1.6em;
       color: #fff;
       font-weight: bold;
     }
+    .navbar .nav-links {
+      display: flex;
+      flex-direction: row;
+      gap: 15px;
+    }
     .navbar .nav-links a {
       color: #fff;
       text-decoration: none;
-      margin-left: 15px;
       font-weight: 500;
     }
     .hero {
@@ -101,26 +106,6 @@
     }
     .whatsapp-btn:hover {
       background-color: #1ebe5d;
-    }
-    @media screen and (max-width: 768px) {
-      .hero {
-        height: 35vh;
-        font-size: 1.8em;
-        text-align: center;
-        padding: 0 10px;
-      }
-      .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .navbar .nav-links {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-      }
-      .navbar .nav-links a {
-        margin: 5px 0;
-      }
     }
   </style>
 </head>
