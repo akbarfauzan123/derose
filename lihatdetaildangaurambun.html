@@ -2,172 +2,277 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
-  <title>Danguarambun Suite | deRos Resort & Cafe</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dangau Rambun | deRos Resort & Cafe</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
   <style>
-      * {
-      margin: 0; 
-      padding: 0;
-      box-sizing: border-box;
-    }
+    /* RESET & BASE */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Poppins', sans-serif;
-      background-color: #fff;
+      background-color: #FEF9F6;
       color: #333;
+      line-height: 1.6;
+      overflow-x: hidden;
     }
-    .navbar {
+    a { text-decoration: none; color: inherit; }
+
+    /* FLOATING LOGO */
+    .logo-floating {
       position: fixed;
-      top: 0;
-      width: 100%;
-      background-color: #2E8B57;
-      display: flex;
+      top: 15px;
+      left: 15px;
+      z-index: 1001;
+    }
+    .logo-floating img { height: 40px; }
+
+    /* MENU */
+    .menu-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #333;
+      color: white;
+      font-size: 24px;
+      border: none;
+      padding: 10px;
+      border-radius: 6px;
+      z-index: 1001;
+    }
+    .menu-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: #2b5c7e;
+      color: white;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
       align-items: center;
-      justify-content: space-between;
-      padding: 10px 20px;
       z-index: 1000;
     }
-    .navbar .brand {
-      font-size: 1.8em;
-      font-weight: bold;
+    .menu-overlay.active { display: flex; }
+    .menu-overlay a {
+      margin: 10px 0;
       color: white;
+      font-size: 1.2em;
+      border-bottom: 1px solid white;
+      padding: 10px 20px;
     }
-    .navbar .nav-links a {
-      margin-left: 20px;
-      color: white;
-      text-decoration: none;
-      font-weight: 600;
-      padding: 10px 18px;
-      border-radius: 5px;
-      transition: all 0.3s;
-    }
-    .navbar .nav-links a:hover {
-      background-color: #A7C957;
-      color: white;
-    }
-    .hero {
-      background: url('dangaurambun.jpg') center/cover no-repeat;
-      height: 50vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
-      font-size: 2.5em;
-      font-weight: bold;
-      margin-top: 60px;
-    }
-    .container {
-      padding: 20px;
-      max-width: 1200px;
-      margin: auto;
-    }
-    .section-title {
-      font-size: 1.8em;
-      margin: 20px 0 10px;
-      color: #2E8B57;
-      font-weight: 600;
-    }
-    .description {
-      font-size: 1.1em;
-      margin-bottom: 20px;
-    }
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 15px;
-      margin-top: 20px;
-    }
-    .gallery img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
+    .menu-overlay a:hover {
+      background-color: rgba(255,255,255,0.2);
       border-radius: 10px;
-      transition: transform 0.3s ease;
     }
-    .gallery img:hover {
-      transform: scale(1.03);
+    .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 25px;
+      font-size: 30px;
+      cursor: pointer;
     }
-    ul.facilities {
-      margin: 15px 0;
-      padding-left: 20px;
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('dangaurambun.jpg') center/cover no-repeat;
+      height: 70vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
     }
-    ul.facilities li {
-      margin-bottom: 8px;
+    .hero h1 { font-size: 3em; }
+
+    /* CAROUSEL */
+    .carousel {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: 20px;
+      padding: 30px;
     }
-    .whatsapp-btn {
-      display: inline-block;
+    .carousel img {
+      height: 250px;
+      border-radius: 12px;
+      scroll-snap-align: start;
+      transition: transform 0.3s;
+      cursor: pointer;
+    }
+    .carousel img:hover {
+      transform: scale(1.05);
+    }
+
+    /* POPUP */
+    .popup {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+    }
+    .popup img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 10px;
+    }
+
+    /* FASILITAS */
+    .info {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    .info h2 {
+      color: #2E8B57;
+      margin-bottom: 15px;
+    }
+    .info ul {
+      list-style: square;
+      margin-left: 20px;
+    }
+
+    /* CTA */
+    .cta {
+      display: flex;
+      justify-content: center;
       margin-top: 30px;
-      padding: 14px 25px;
+    }
+    .cta a {
       background-color: #25D366;
       color: white;
-      text-align: center;
-      font-size: 1em;
+      padding: 12px 30px;
+      border-radius: 30px;
       font-weight: bold;
-      border-radius: 10px;
+      font-size: 16px;
+    }
+
+    /* CONTACT FAB */
+    .contact-fab {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 999;
+    }
+    .main-btn {
+      background: #25D366;
+      color: white;
+      font-size: 28px;
+      width: 56px;
+      height: 56px;
+      border: none;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      cursor: pointer;
+    }
+    .contact-options {
+      display: none;
+      flex-direction: column;
+      align-items: flex-end;
+      margin-bottom: 10px;
+      gap: 10px;
+    }
+    .contact-options.active { display: flex; }
+    .contact-options a {
+      background: white;
+      color: black;
+      padding: 8px 12px;
+      border-radius: 8px;
       text-decoration: none;
-      transition: background-color 0.3s ease;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     }
-    .whatsapp-btn:hover {
-      background-color: #1ebe5d;
-    }
-    @media (max-width: 768px) {
-      .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .navbar .nav-links {
-        display: flex;
-        flex-direction: row;
-        margin-top: 10px;
-      }
-      .navbar .nav-links a {
-        margin-left: 0;
-        margin-right: 20px;
-      }
+    .contact-options a img {
+      width: 20px;
+      height: 20px;
+      margin-right: 8px;
     }
   </style>
 </head>
 <body>
-  <div class="navbar">
-    <div class="brand">deRos Resort & Cafe</div>
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="Resort.html">Resort</a>
-      <a href="Contact.html">Contact</a>
-    </div>
+  <div class="logo-floating">
+    <img src="logo derose.png" alt="Logo deRos" />
+  </div>
+  <button class="menu-btn" onclick="toggleMenu()">☰</button>
+  <div class="menu-overlay" id="menuOverlay">
+    <span class="close-btn" onclick="toggleMenu()">×</span>
+    <a href="index.html">HOME</a>
+    <a href="Resort.html">BOOK A ROOM</a>
+    <a href="About.html">ABOUT</a>
+    <a href="Contact.html">CONTACT</a>
   </div>
 
-  <div class="hero">Danguarambun Suite</div>
+  <section class="hero">
+    <h1>Dangau Rambun</h1>
+  </section>
 
-  <div class="container">
-    <div class="section-title">Tentang Kamar</div>
-    <p class="description">
-      Danguarambun Suite cocok untuk Anda yang mencari ketenangan dan kenyamanan maksimal. Kamar ini memiliki desain alami dengan pencahayaan lembut, serta balkon pribadi untuk menikmati pemandangan pagi yang berkabut.
-    </p>
+  <section class="carousel" id="carousel">
+    <img src="dangaurambun.jpg" alt="Kamar Dangau Rambun" onclick="openPopup(this.src)" />
+    <img src="dangaurambun1.jpg" alt="Dangau 2" onclick="openPopup(this.src)" />
+    <img src="dangaurambun2.jpg" alt="Dangau 3" onclick="openPopup(this.src)" />
+    <img src="dangaurambun3.jpg" alt="Dangau 4" onclick="openPopup(this.src)" />
+    <img src="dangaurambun4.jpg" alt="Dangau 5" onclick="openPopup(this.src)" />
+    <img src="dangaurambun5.jpg" alt="Dangau 6" onclick="openPopup(this.src)" />
+    <img src="dangaurambun6.jpg" alt="Dangau 7" onclick="openPopup(this.src)" />
+  </section>
 
-    <div class="section-title">Galeri</div>
-    <div class="gallery">
-      <img src="dangaurambun1.jpg" alt="Danguarambun 1">
-      <img src="dangaurambun2.jpg" alt="Danguarambun 2">
-      <img src="dangaurambun3.jpg" alt="Danguarambun 3">
-      <img src="dangaurambun4.jpg" alt="Danguarambun 4">
-      <img src="dangaurambun5.jpg" alt="Danguarambun 5">
-    </div>
+  <div class="popup" id="popup" onclick="closePopup()">
+    <img id="popup-img" src="" alt="Popup Image" />
+  </div>
 
-    <div class="section-title">Fasilitas</div>
-    <ul class="facilities">
-      <li>1 Queen Bed + Sofa Santai</li>
-      <li>Balkon pribadi menghadap lembah</li>
-      <li>Kamar mandi dalam + water heater</li>
-      <li>AC & Smart TV</li>
-      <li>Meja kerja + WiFi kencang</li>
-      <li>Sarapan untuk 2 orang</li>
-      <li>Parkir aman & strategis</li>
+  <section class="info">
+    <h2>Fasilitas</h2>
+    <ul>
+      <li>Queen Bed nyaman</li>
+      <li>Wi-Fi gratis</li>
+      <li>AC & TV LED</li>
+      <li>Kamar mandi dalam dengan shower air panas</li>
+      <li>Balkon pribadi dengan pemandangan taman</li>
+      <li>Akses ke kolam renang</li>
+      <li>Sarapan gratis untuk 2 orang</li>
     </ul>
+  </section>
 
-    <a class="whatsapp-btn" href="https://wa.me/628129026927?text=Halo,%20saya%20tertarik%20dengan%20Danguarambun%20Suite%20di%20deRos%20Resort.%20Apakah%20masih%20tersedia?%20Saya%20berencana%20booking%20untuk%20[tanggal]." target="_blank">
-      Pesan Sekarang via WhatsApp
-    </a>
+  <div class="cta">
+    <a href="https://wa.me/628129026927?text=Halo%2C%20saya%20tertarik%20dengan%20Kamar%20Dangau%20Rambun.%20Apakah%20masih%20tersedia%3F" target="_blank">Booking via WhatsApp</a>
   </div>
+
+  <div class="contact-fab">
+    <div class="contact-options" id="contactOptions">
+      <a href="https://wa.me/628129026927" target="_blank">
+        <img src="whaatsaap.png" alt="WhatsApp"> WhatsApp
+      </a>
+      <a href="https://instagram.com/deros.resort" target="_blank">
+        <img src="Instagram_icon.png" alt="Instagram"> Instagram
+      </a>
+      <a href="https://facebook.com/deros.resort" target="_blank">
+        <img src="Facebook_icon.png" alt="Facebook"> Facebook
+      </a>
+    </div>
+    <button class="main-btn" onclick="toggleContactOptions()">+</button>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('menuOverlay').classList.toggle('active');
+    }
+    function toggleContactOptions() {
+      document.getElementById('contactOptions').classList.toggle('active');
+    }
+    function openPopup(src) {
+      document.getElementById('popup-img').src = src;
+      document.getElementById('popup').style.display = 'flex';
+    }
+    function closePopup() {
+      document.getElementById('popup').style.display = 'none';
+    }
+  </script>
 </body>
 </html>
