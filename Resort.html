@@ -1,80 +1,110 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>deRos Resort & Cafe | Resort</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book a Room | deRos Resort & Cafe</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
   <style>
-    /* RESET CSS */
-    * {
-      margin: 0; 
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Poppins', sans-serif;
-      background-color: #FAF3E0;
+      background-color: #FEF9F6;
       color: #333;
+      line-height: 1.6;
     }
-    
-    /* NAVBAR */
-    .navbar {
+    .logo-floating {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      z-index: 1001;
+    }
+    .logo-floating img {
+      height: 40px;
+      animation: floatLogo 3s ease-in-out infinite;
+    }
+    @keyframes floatLogo {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+    .menu-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #333;
+      color: white;
+      font-size: 24px;
+      border: none;
+      padding: 10px;
+      border-radius: 6px;
+      z-index: 1001;
+      cursor: pointer;
+    }
+    .menu-overlay {
       position: fixed;
       top: 0;
+      left: 0;
       width: 100%;
-      background-color: #2E8B57;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 20px;
-      z-index: 1000; 
-    }
-    .navbar .brand {
-      font-size: 1.8em;
-      font-weight: bold;
+      height: 100%;
+      background: #2b5c7e;
       color: white;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
     }
-    .navbar .nav-links a {
-      margin-left: 20px;
+    .menu-overlay.active {
+      display: flex;
+      animation: fadeIn 0.5s ease forwards;
+    }
+    .menu-overlay a {
+      margin: 10px 0;
       color: white;
       text-decoration: none;
-      font-weight: 600;
-      padding: 10px 18px;
-      border-radius: 5px;
-      transition: all 0.3s;
+      font-size: 1.2em;
+      border-bottom: 1px solid white;
+      padding: 10px 20px;
+      transition: all 0.3s ease;
     }
-    .navbar .nav-links a:hover {
-      background-color: #A7C957;
-      color: white;
+    .menu-overlay a:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
     }
-
-    /* HERO SECTION */
-    .hero-resort {
-      background: linear-gradient(
-          rgba(0, 0, 0, 0.4), 
-          rgba(0, 0, 0, 0.4)
-        ),
-        url("foto\view.jpeg") center/cover no-repeat; 
-      /* Pastikan gambar ini ada dan namanya sesuai */
-      height: 60vh;
+    .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 25px;
+      font-size: 30px;
+      cursor: pointer;
+    }
+    .hero-section {
+      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('homeback1.jpeg') center/cover no-repeat;
+      height: 70vh;
       display: flex;
       justify-content: center;
       align-items: center;
       text-align: center;
       color: white;
-      margin-top: 60px; /* menghindari overlap navbar */
       padding: 0 20px;
+      animation: fadeIn 2s ease-out;
     }
-    .hero-resort h1 {
+    .hero-section h1 {
       font-size: 3em;
       margin-bottom: 10px;
+      animation: fadeInDown 1.5s;
     }
-    .hero-resort p {
+    .hero-section p {
       font-size: 1.2em;
-      max-width: 600px;
-      margin: 0 auto;
+      animation: fadeInUp 2s;
     }
-
+    .room-section {
+      padding: 60px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+    
     /* SECTION DESKRIPSI & FASILITAS */
     .resort-info {
       max-width: 1200px;
@@ -126,38 +156,27 @@
       height: 20px;
       margin-right: 10px;
     }
-
-    /* SECTION DAFTAR KAMAR */
-    .rooms-section {
-      max-width: 1200px;
-      margin: 20px auto 40px auto;
-      padding: 0 20px;
-    }
-    .rooms-section h2 {
+    .room-section h2 {
       text-align: center;
-      font-size: 2em;
       color: #2E8B57;
-      margin-bottom: 30px;
+      margin-bottom: 40px;
+      animation: zoomIn 1.5s;
     }
-    .rooms-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
+    .room-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
     }
     .room-card {
-      background-color: white;
-      width: 300px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
       overflow: hidden;
-      transition: transform 0.3s;
-      display: flex;
-      flex-direction: column;
-      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
     .room-card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-8px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.15);
     }
     .room-card img {
       width: 100%;
@@ -165,301 +184,218 @@
       object-fit: cover;
     }
     .room-info {
-      padding: 15px;
-    }
-    .room-info h3 {
-      margin-bottom: 10px;
-      color: #2E8B57;
-    }
-    .room-info p {
-      font-size: 0.95em;
-      margin-bottom: 15px;
-      line-height: 1.4;
-    }
-    .room-info .cta-button {
-      background-color: #E85D04;
-      color: white;
-      padding: 10px 20px;
-      text-decoration: none;
-      border-radius: 25px;
-      font-size: 1em;
-      font-weight: bold;
-      transition: background-color 0.3s;
-    }
-    .room-info .cta-button:hover {
-      background-color: #F5A623;
-    }
-
-    /* FOOTER */
-    footer {
-      background-color: #2E8B57;
-      color: white;
       padding: 20px;
       text-align: center;
-      margin-top: 40px;
     }
-    footer .footer-content {
-      display: flex;
-      justify-content: space-around;
-      flex-wrap: wrap;
+    .room-info h3 {
+      color: #2E8B57;
+      margin-bottom: 8px;
     }
-    footer .footer-content div {
-      margin: 10px;
+    .room-info p {
+      margin-bottom: 12px;
+      font-size: 15px;
+      color: #555;
     }
-    footer a {
+    .room-info a {
+      background-color: #E85D04;
       color: white;
-      text-decoration: underline;
+      padding: 10px 25px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s, transform 0.3s;
+      display: inline-block;
     }
-
-    /* TOMBOL WHATSAPP FLOATING */
-    #whatsapp-float {
+    .room-info a:hover {
+      background-color: #F5A623;
+      transform: scale(1.05);
+    }
+    .contact-fab {
       position: fixed;
       bottom: 20px;
       right: 20px;
-      z-index: 1000;
+      z-index: 999;
+    }
+    .main-btn {
+      background: #25D366;
+      color: white;
+      font-size: 28px;
+      width: 56px;
+      height: 56px;
+      border: none;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
+    }
+    .main-btn:hover {
+      transform: rotate(90deg);
+    }
+    .contact-options {
+      display: none;
+      flex-direction: column;
+      align-items: flex-end;
+      margin-bottom: 10px;
+      gap: 10px;
+    }
+    .contact-options.active {
+      display: flex;
+      animation: fadeInRight 0.5s;
+    }
+    .contact-options a {
+      background: white;
+      color: black;
+      padding: 8px 12px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 14px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
       display: flex;
       align-items: center;
-      background-color: #25D366;
-      color: white;
-      padding: 10px 16px;
-      border-radius: 50px;
-      text-decoration: none;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: all 0.3s ease;
     }
-    #whatsapp-float img {
-      width: 30px;
-      height: 30px;
+    .contact-options a:hover {
+      transform: translateX(-5px);
+    }
+    .contact-options a img {
+      width: 20px;
+      height: 20px;
       margin-right: 8px;
-    }
-    #whatsapp-float span {
-      font-weight: bold;
-      font-size: 14px;
-    }
-    #whatsapp-float:hover {
-      transform: scale(1.05);
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-    }
-
-    /* RESPONSIVE */
-    @media (max-width: 768px) {
-      .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .navbar .nav-links {
-        margin-top: 10px;
-      }
-      .navbar .nav-links a {
-        margin: 5px 0;
-      }
-      .hero-resort {
-        margin-top: 100px;
-      }
-      .resort-info {
-        flex-direction: column;
-      }
-      .rooms-container {
-        flex-direction: column;
-        align-items: center;
-      }
-      .room-card {
-        width: 80%;
-      }
-      #whatsapp-float span {
-        display: none; /* Sembunyikan teks di layar kecil */
-      }
     }
   </style>
 </head>
 <body>
-
-  <!-- NAVBAR -->
-  <nav class="navbar">
-    <div class="brand">deRos Resort & Cafe</div>
-    <div class="nav-links">
-      <!-- Pastikan path ke Home dan Resort sesuai struktur folder Anda -->
-      <a href="index.html">Home</a>
-      <a href="Resort.html">Resort</a>
-      <a href="Contact.html">Contact</a>
-    </div>
-  </nav>
-
-  <!-- HERO SECTION -->
-  <div class="hero-resort">
+  <div class="logo-floating">
+    <img src="logo derose.png" alt="Logo deRos" />
+  </div>
+  <button class="menu-btn" onclick="toggleMenu()">☰</button>
+  <div class="menu-overlay" id="menuOverlay">
+    <span class="close-btn" onclick="toggleMenu()">×</span>
+    <a href="index.html">HOME</a>
+    <a href="bookaroom.html">BOOK A ROOM</a>
+    <a href="#about">ABOUT</a>
+    <a href="#contact">CONTACT</a>
+  </div>
+  <section class="hero-section">
     <div>
       <h1>Resort deRos</h1>
       <p>Temukan kenyamanan dan keindahan alam di Ciawi-Bogor</p>
     </div>
-  </div>
-
-  <!-- DESKRIPSI & FASILITAS -->
-  <section class="resort-info">
-    <!-- Kolom Kiri: Deskripsi -->
-    <div class="resort-desc">
-      <h2>deRos Resort & Cafe</h2>
-      <p>deRos Resort & Cafe adalah pilihan yang tepat untuk Anda selama berada di Ciawi-Bogor. 
-         Dengan berbagai pilihan tipe kamar bergaya arsitektur tradisional yang dilengkapi dengan fasilitas WiFi, 
-         water heater, AC, dan TV membuat Anda lebih nyaman menikmati udara pegunungan yang sejuk di Ciawi. 
-      </p>
-      <p>
-         Resort ini terletak di Ciawi-Bogor, yang dapat dicapai tidak lebih dari 1 jam dari Jakarta, 
-         sehingga cocok untuk liburan keluarga maupun acara kantor. 
-         Lokasinya juga strategis untuk menjangkau kawasan Puncak dan Kota Bogor.
-      </p>
-    </div>
-
-    <!-- Kolom Kanan: Fasilitas -->
-    <div class="resort-facilities">
-      <h2>Facilities</h2>
-      <ul class="facility-list">
-        <!-- Ganti icon.png dengan icon fasilitas Anda -->
-        <li><img src="wifilogo.png"alt="WiFi">WiFi</li>
-        <li><img src="lapanganbasket.png" alt="Lapangan Basket">Lapangan Basket</li>
-        <li><img src="waterheaterlogo.png" alt="Water Heater">Water Heater</li>
-        <li><img src="TelevisiIcon.png" alt="Television">Television</li>
-        <li><img src="breakfast.png" alt="Breakfast">Breakfast</li>
-        <li><img src="waterdispenser.png" alt="Water Dispenser">Water Dispenser</li>
-        <li><img src="Kolamrenang1.png" alt="Kolam Renang">Kolam Renang</li>
-        <!-- Tambahkan fasilitas lain sesuai kebutuhan -->
-      </ul>
-    </div>
   </section>
-
-  <!-- DAFTAR 9 KAMAR -->
-  <section class="rooms-section">
+  <section class="room-section">
     <h2>Pilihan Kamar</h2>
-    <div class="rooms-container">
-
-      <!-- Kamar 1: Batu Sangkar -->
+    <div class="room-grid">
       <div class="room-card">
-        <img src="batusangkar.png" alt="Batu Sangkar" />
+        <img src="kamar1.jpeg" alt="Batusangkar">
         <div class="room-info">
           <h3>Batu Sangkar</h3>
           <p>Rp 750.000 / hari</p>
-          <a href="lihatdetailbatusangkar.html" class="cta-button">Lihat Detail</a>
+          <a href="lihatdetailbatusangkar.html">Lihat Detail</a>
         </div>
       </div>
-
-      <!-- Kamar 2: Dangau Rambun -->
       <div class="room-card">
-        <img src="dangaurambun.jpg" alt="Dangau Rambun" />
+        <img src="kamar2.jpeg" alt="Dangau Rambun">
         <div class="room-info">
           <h3>Dangau Rambun</h3>
           <p>Rp 750.000 / hari</p>
-          <a href="lihatdetaildangaurambun.html" class="cta-button">Lihat Detail</a>
+          <a href="lihatdetaildangaurambun.html">Lihat Detail</a>
         </div>
       </div>
-
-      <!-- Kamar 3: Sumanik – Standard 2 -->
       <div class="room-card">
-        <img src="sumanikstandar2.jpg" alt="Sumanik – Standard 2" />
+        <img src="kamar3.jpeg" alt="Sumanik Standard 2">
         <div class="room-info">
           <h3>Sumanik – Standard 2</h3>
           <p>Rp 750.000 / hari</p>
-          <a href="lihatdetailsumanikstandar2.html" class="cta-button">Lihat Detail</a>
+          <a href="lihatdetailsumanikstandar2.html">Lihat Detail</a>
         </div>
       </div>
-
-      <!-- Kamar 4: Sumanik – Standard 1 -->
       <div class="room-card">
-        <img src="sumanikstandar1.jpg" alt="Sumanik – Standard 1" />
-        <div class="room-info">
-          <h3>Sumanik – Standard 1</h3>
-          <p>Rp 1.000.000 / hari</p>
-          <a href="lihatdetailsumanikstandar1.html" class="cta-button">Lihat Detail</a>
-        </div>
-      </div>
-
-      <!-- Kamar 5: Talawi – Deluxe With Bathtub Floor 1 -->
-      <div class="room-card">
-        <img src="talawi-deluxewithbathub.jpg" alt="Talawi – Deluxe With Bathtub Floor 1" />
-        <div class="room-info">
-          <h3>Talawi – Deluxe With Bathtub Floor 1</h3>
-          <p>Rp 1.500.000 / hari</p>
-          <a href="lihatdetailtalawideluxbathubfloor1.html" class="cta-button">Lihat Detail</a>
-        </div>
-      </div>
-
-      <!-- Kamar 6: Talawi – Deluxe With Bathtub Floor 2 -->
-      <div class="room-card">
-        <img src="talawi-deluxewithbathub-13.jpg" alt="Talawi – Deluxe With Bathtub Floor 2" />
-        <div class="room-info">
-          <h3>Talawi – Deluxe With Bathtub Floor 2</h3>
-          <p>Rp 1.500.000 / hari</p>
-          <a href="lihatdetailtalawideluxbathubfloor2.html" class="cta-button">Lihat Detail</a>
-        </div>
-      </div>
-
-
-      <!-- Kamar 7: Talawi – Deluxe View -->
-      <div class="room-card">
-        <img src="talawideluxeview.jpg" alt="Talawi – Deluxe View" />
-        <div class="room-info">
-          <h3>Talawi – Deluxe View</h3>
-          <p>Rp 1.500.000 / hari</p>
-          <a href="lihatdetailtalawideluxview.html" class="cta-button">Lihat Detail</a>
-        </div>
-      </div>
-
-      <!-- Kamar 8: Joglo Tikalak -->
-      <div class="room-card">
-        <img src="joglotikalak.jpg" alt="Joglo Tikalak" />
+        <img src="kamar4.jpeg" alt="Joglo Tikalak">
         <div class="room-info">
           <h3>Joglo Tikalak</h3>
-          <p>Rp 2.500.000 / hari</p>
-          <a href="lihatdetailjoglotikalak.html" class="cta-button">Lihat Detail</a>
+          <p>Rp 800.000 / hari</p>
+          <a href="lihatdetailjoglotikalak.html">Lihat Detail</a>
         </div>
       </div>
-
-      <!-- Kamar 9: Talawi – Family Suites -->
       <div class="room-card">
-        <img src="talawideluxeFamilysuites.jpg" alt="Talawi – Family Suites" />
+        <img src="kamar5.jpeg" alt="Sumanik Standard 1">
         <div class="room-info">
-          <h3>Talawi – Family Suites</h3>
-          <p>Rp 3.500.000 / hari</p>
-          <a href="lihatdetailFamilysuites.html" class="cta-button">Lihat Detail</a>
+          <h3>Sumanik – Standard 1</h3>
+          <p>Rp 700.000 / hari</p>
+          <a href="lihatdetailsumanikstandar1.html">Lihat Detail</a>
         </div>
       </div>
-
+      <div class="room-card">
+        <img src="kamar6.jpeg" alt="Family Suites">
+        <div class="room-info">
+          <h3>Family Suites</h3>
+          <p>Rp 950.000 / hari</p>
+          <a href="lihatdetailfamilysuites.html">Lihat Detail</a>
+        </div>
+      </div>
+      <div class="room-card">
+        <img src="kamar7.jpeg" alt="Talawi Deluxe Bathtub Lantai 1">
+        <div class="room-info">
+          <h3>Talawi Deluxe Bathub Lt 1</h3>
+          <p>Rp 900.000 / hari</p>
+          <a href="lihatdetailtalawideluxbathubfloor1.html">Lihat Detail</a>
+        </div>
+      </div>
+      <div class="room-card">
+        <img src="kamar8.jpeg" alt="Talawi Deluxe Bathtub Lantai 2">
+        <div class="room-info">
+          <h3>Talawi Deluxe Bathub Lt 2</h3>
+          <p>Rp 900.000 / hari</p>
+          <a href="lihatdetailtalawideluxbathubfloor2.html">Lihat Detail</a>
+        </div>
+      </div>
+      <div class="room-card">
+        <img src="kamar9.jpeg" alt="Talawi Deluxe View">
+        <div class="room-info">
+          <h3>Talawi Deluxe View</h3>
+          <p>Rp 950.000 / hari</p>
+          <a href="lihatdetailtalawideluxview.html">Lihat Detail</a>
+        </div>
+      </div>
     </div>
   </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-content">
-      <div>
-        <h3>Kunjungi deRos Resort & Cafe</h3>
-        <p>
-          Cileungsi, Kec. Ciawi, Kabupaten Bogor, Jawa Barat
-        </p>
-        <p>WA Admin: 
-          <a href="https://wa.me/628129026927" target="_blank">
-            +62 812 9026 927
-          </a>
-        </p>
-      </div>
-      <div>
-        <h3>Follow Kami</h3>
-        <a href="https://facebook.com" target="_blank">Facebook</a> |
-        <a href="https://www.instagram.com/deros.resort?igsh=OXhsdTlqcTlsYnJ2" target="_blank">Instagram</a>
-      </div>
+  <div class="contact-fab">
+    <div class="contact-options" id="contactOptions">
+      <a href="https://wa.me/628129026927" target="_blank">
+        <img src="whatsapp.png" alt="WhatsApp"> WhatsApp
+      </a>
+      <a href="https://instagram.com/deros.resort" target="_blank">
+        <img src="instagram.png" alt="Instagram"> Instagram
+      </a>
+      <a href="https://facebook.com/deros.resort" target="_blank">
+        <img src="facebook.png" alt="Facebook"> Facebook
+      </a>
     </div>
-    <p style="margin-top: 20px;">© 2025 deRos Resort & Cafe. All Rights Reserved.</p>
-  </footer>
-
-  <!-- TOMBOL WHATSAPP FLOATING -->
-  <a href="https://wa.me/628129026927?text=Halo%2C%20saya%20tertarik%20dengan%20deRos%20Resort.%20Bisa%20minta%20info%20lebih%20lanjut%3F"
-     id="whatsapp-float" 
-     target="_blank">
-    <img src="whaatsaap.png" alt="WhatsApp">
-    <span>Hubungi Kami</span>
-  </a>
-
+    <button class="main-btn" onclick="toggleContactOptions()">+</button>
+  </div>
+  <script>
+    function toggleMenu() {
+      document.getElementById('menuOverlay').classList.toggle('active');
+    }
+    function toggleContactOptions() {
+      document.getElementById('contactOptions').classList.toggle('active');
+    }
+    document.addEventListener("DOMContentLoaded", () => {
+      const cards = document.querySelectorAll(".room-card");
+      const options = { threshold: 0.3 };
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate__animated", "animate__fadeInUp");
+          }
+        });
+      }, options);
+      cards.forEach(card => observer.observe(card));
+    });
+  </script>
 </body>
-
 </html>
-
-
-
 
