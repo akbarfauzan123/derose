@@ -1,179 +1,321 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
-  <title>Kamar Batusangkar | deRos Resort & Cafe</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Batusangkar | deRos Resort & Cafe</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
   <style>
-      * {
-      margin: 0; 
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Poppins', sans-serif;
-      background-color: #fff;
+      background-color: #FEF9F6;
       color: #333;
+      line-height: 1.6;
     }
-    .navbar {
+    .logo-floating {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      z-index: 1001;
+    }
+    .logo-floating img {
+      height: 40px;
+      animation: floatLogo 3s ease-in-out infinite;
+    }
+    @keyframes floatLogo {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+    .menu-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #333;
+      color: white;
+      font-size: 24px;
+      border: none;
+      padding: 10px;
+      border-radius: 6px;
+      z-index: 1001;
+      cursor: pointer;
+    }
+    .menu-overlay {
       position: fixed;
       top: 0;
+      left: 0;
       width: 100%;
-      background-color: #2E8B57;
-      display: flex;
+      height: 100%;
+      background: #2b5c7e;
+      color: white;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
       align-items: center;
-      justify-content: space-between;
-      padding: 10px 20px;
       z-index: 1000;
     }
-    .navbar .brand {
-      font-size: 1.8em;
-      font-weight: bold;
-      color: white;
+    .menu-overlay.active {
+      display: flex;
+      animation: fadeIn 0.5s ease forwards;
     }
-    .navbar .nav-links a {
-      margin-left: 20px;
+    .menu-overlay a {
+      margin: 10px 0;
       color: white;
       text-decoration: none;
-      font-weight: 600;
-      padding: 10px 18px;
-      border-radius: 5px;
-      transition: all 0.3s;
+      font-size: 1.2em;
+      border-bottom: 1px solid white;
+      padding: 10px 20px;
+      transition: all 0.3s ease;
     }
-    .navbar .nav-links a:hover {
-      background-color: #A7C957;
-      color: white;
+    .menu-overlay a:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
     }
-    .hero {
+    .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 25px;
+      font-size: 30px;
+      cursor: pointer;
+    }
+    .hero-image {
       background: url('batusangkar.png') center/cover no-repeat;
-      height: 50vh;
+      height: 60vh;
       display: flex;
       align-items: center;
       justify-content: center;
       color: white;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
-      font-size: 2.5em;
-      font-weight: bold;
-      margin-top: 60px;
+      text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
+      text-align: center;
+      animation: fadeIn 1.5s ease-out;
     }
-    .container {
-      padding: 20px;
-      max-width: 1200px;
-      margin: auto;
+    .hero-image h1 {
+      font-size: 3em;
     }
-    .section-title {
-      font-size: 1.8em;
-      margin: 20px 0 10px;
-      color: #2E8B57;
-      font-weight: 600;
+    .detail-section {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+      animation: fadeInUp 1.5s;
     }
-    .description {
-      font-size: 1.1em;
-      margin-bottom: 20px;
+    .carousel {
+      display: flex;
+      overflow-x: auto;
+      gap: 10px;
+      scroll-snap-type: x mandatory;
+      margin-bottom: 30px;
     }
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 15px;
-      margin-top: 20px;
-    }
-    .gallery img {
+    .carousel img {
+      height: 240px;
       width: 100%;
-      height: 180px;
+      max-width: 400px;
+      border-radius: 12px;
       object-fit: cover;
-      border-radius: 10px;
+      scroll-snap-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      cursor: pointer;
       transition: transform 0.3s ease;
     }
-    .gallery img:hover {
+    .carousel img:hover {
       transform: scale(1.03);
     }
-    ul.facilities {
-      margin: 15px 0;
-      padding-left: 20px;
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
     }
-    ul.facilities li {
-      margin-bottom: 8px;
-    }
-    .whatsapp-btn {
-      display: inline-block;
-      margin-top: 30px;
-      padding: 14px 25px;
-      background-color: #25D366;
-      color: white;
-      text-align: center;
-      font-size: 1em;
-      font-weight: bold;
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
       border-radius: 10px;
+    }
+    .lightbox.show {
+      display: flex;
+      animation: fadeIn 0.3s ease-out;
+    }
+    .lightbox:after {
+      content: '\00d7';
+      position: absolute;
+      top: 30px;
+      right: 40px;
+      font-size: 48px;
+      color: white;
+      cursor: pointer;
+    }
+    .highlight-box {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      padding: 25px;
+      margin-top: 30px;
+    }
+    .highlight-box ul {
+      list-style: none;
+      padding: 0;
+    }
+    .highlight-box li {
+      margin-bottom: 10px;
+    }
+    .cta-book {
+      display: block;
+      width: max-content;
+      margin: 30px auto 0;
+      background-color: #E85D04;
+      color: white;
       text-decoration: none;
-      transition: background-color 0.3s ease;
+      padding: 12px 30px;
+      font-weight: bold;
+      border-radius: 30px;
+      transition: background 0.3s;
     }
-    .whatsapp-btn:hover {
-      background-color: #1ebe5d;
+    .cta-book:hover {
+      background-color: #F5A623;
     }
-    @media (max-width: 768px) {
-      .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .navbar .nav-links {
-        display: flex;
-        flex-direction: row;
-        margin-top: 10px;
-      }
-      .navbar .nav-links a {
-        margin-left: 0;
-        margin-right: 20px;
-      }
+    .contact-fab {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 999;
+    }
+    .main-btn {
+      background: #25D366;
+      color: white;
+      font-size: 28px;
+      width: 56px;
+      height: 56px;
+      border: none;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
+    }
+    .main-btn:hover {
+      transform: rotate(90deg);
+    }
+    .contact-options {
+      display: none;
+      flex-direction: column;
+      align-items: flex-end;
+      margin-bottom: 10px;
+      gap: 10px;
+    }
+    .contact-options.active {
+      display: flex;
+      animation: fadeInRight 0.5s;
+    }
+    .contact-options a {
+      background: white;
+      color: black;
+      padding: 8px 12px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 14px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      display: flex;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+    .contact-options a:hover {
+      transform: translateX(-5px);
+    }
+    .contact-options a img {
+      width: 20px;
+      height: 20px;
+      margin-right: 8px;
+      object-fit: contain;
     }
   </style>
 </head>
 <body>
-  <div class="navbar">
-    <div class="brand">deRos Resort & Cafe</div>
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="Resort.html">Resort</a>
-      <a href="Contact.html">Contact</a>
-    </div>
+  <div class="logo-floating">
+    <img src="logo derose.png" alt="Logo deRos" />
+  </div>
+  <button class="menu-btn" onclick="toggleMenu()">☰</button>
+  <div class="menu-overlay" id="menuOverlay">
+    <span class="close-btn" onclick="toggleMenu()">×</span>
+    <a href="index.html">HOME</a>
+    <a href="Resort.html">BOOK A ROOM</a>
+    <a href="About.html">ABOUT</a>
+    <a href="Contact.html">CONTACT</a>
   </div>
 
-  <div class="hero">Kamar Batusangkar</div>
+  <div class="hero-image">
+    <h1>Kamar Batusangkar</h1>
+  </div>
 
-  <div class="container">
-    <div class="section-title">Tentang Kamar</div>
-    <p class="description">
-      Kamar Batusangkar menawarkan kenyamanan modern dengan sentuhan tradisional. Cocok untuk pasangan atau keluarga kecil yang ingin bersantai di tengah alam.
-    </p>
-
-    <div class="section-title">Galeri</div>
-    <div class="gallery">
-      <img src="batusangkar1.png" alt="Foto Kamar 1">
-      <img src="batusangkar2.png" alt="Foto Kamar 2">
-      <img src="batusangkar3.png" alt="Foto Kamar 3">
-      <img src="batusangkar4.png" alt="Foto Kamar 4">
-      <img src="batusangkar5.png" alt="Foto Kamar 5">
+  <section class="detail-section">
+    <div class="carousel">
+      <img src="batusangkar.png" alt="Batusangkar 1" onclick="openLightbox(this.src)">
+      <img src="batusangkar1.png" alt="Batusangkar 2" onclick="openLightbox(this.src)">
+      <img src="batusangkar2.png" alt="Batusangkar 3" onclick="openLightbox(this.src)">
+      <img src="batusangkar3.png" alt="Batusangkar 4" onclick="openLightbox(this.src)">
+      <img src="batusangkar4.png" alt="Batusangkar 5" onclick="openLightbox(this.src)">
+      <img src="batusangkar5.png" alt="Batusangkar 6" onclick="openLightbox(this.src)">
+      <img src="batusangkar6.png" alt="Batusangkar 7" onclick="openLightbox(this.src)">
     </div>
 
-    <div class="section-title">Fasilitas</div>
-    <ul class="facilities">
-      <li>1 Queen Bed, AC, Smart TV</li>
-      <li>Kamar mandi dalam dengan water heater</li>
-      <li>WiFi gratis dan sarapan</li>
-      <li>Pemandangan alam yang indah</li>
-      <li>Area parkir pribadi</li>
-    </ul>
+    <h2>Deskripsi</h2>
+    <p>Kamar Batusangkar menghadirkan suasana hangat dan nyaman dengan desain interior tradisional yang elegan. Cocok untuk pasangan atau keluarga kecil yang ingin beristirahat di tengah kesejukan alam Ciawi.</p>
 
-    <a class="whatsapp-btn" href="https://wa.me/628129026927?text=Halo,%20saya%20tertarik%20dengan%20Kamar%20Batusangkar.%20Apakah%20masih%20tersedia?%20Saya%20berencana%20booking%20untuk%20[tanggal]." target="_blank">
-      Pesan Sekarang via WhatsApp
-    </a>
+    <div class="highlight-box">
+      <h3>Fasilitas Kamar:</h3>
+      <ul>
+        <li>✔ Tempat tidur queen size</li>
+        <li>✔ Kamar mandi dalam + water heater</li>
+        <li>✔ Televisi dan Wi-Fi</li>
+        <li>✔ Balkon pribadi dengan pemandangan taman</li>
+        <li>✔ Sarapan gratis</li>
+        <li>✔ Akses kolam renang & lapangan basket</li>
+      </ul>
+    </div>
+
+    <a class="cta-book" href="https://wa.me/628129026927?text=Halo%20saya%20tertarik%20dengan%20Kamar%20Batusangkar.%20Apakah%20masih%20tersedia?" target="_blank">Booking via WhatsApp</a>
+  </section>
+
+  <div class="contact-fab">
+    <div class="contact-options" id="contactOptions">
+      <a href="https://wa.me/628129026927" target="_blank">
+        <img src="whaatsaap.png" alt="WhatsApp"> WhatsApp
+      </a>
+      <a href="https://instagram.com/deros.resort" target="_blank">
+        <img src="Instagram_icon.png" alt="Instagram"> Instagram
+      </a>
+      <a href="https://facebook.com/deros.resort" target="_blank">
+        <img src="Facebook_icon.png" alt="Facebook"> Facebook
+      </a>
+    </div>
+    <button class="main-btn" onclick="toggleContactOptions()">+</button>
   </div>
+
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <img id="lightboxImg" src="" alt="Preview">
+  </div>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('menuOverlay').classList.toggle('active');
+    }
+    function toggleContactOptions() {
+      document.getElementById('contactOptions').classList.toggle('active');
+    }
+    function openLightbox(src) {
+      document.getElementById('lightboxImg').src = src;
+      document.getElementById('lightbox').classList.add('show');
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('show');
+    }
+  </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
