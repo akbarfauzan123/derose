@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About | deRos Resort & Cafe</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -12,6 +13,7 @@
       background-color: #FEF9F6;
       color: #333;
       line-height: 1.6;
+      overflow-x: hidden;
     }
     .logo-floating {
       position: fixed;
@@ -21,6 +23,11 @@
     }
     .logo-floating img {
       height: 40px;
+      animation: floatLogo 3s ease-in-out infinite;
+    }
+    @keyframes floatLogo {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
     }
     .menu-btn {
       position: fixed;
@@ -33,6 +40,7 @@
       padding: 10px;
       border-radius: 6px;
       z-index: 1001;
+      cursor: pointer;
     }
     .menu-overlay {
       position: fixed;
@@ -50,6 +58,7 @@
     }
     .menu-overlay.active {
       display: flex;
+      animation: fadeIn 0.5s ease forwards;
     }
     .menu-overlay a {
       margin: 10px 0;
@@ -58,6 +67,7 @@
       font-size: 1.2em;
       border-bottom: 1px solid white;
       padding: 10px 20px;
+      transition: all 0.3s ease;
     }
     .menu-overlay a:hover {
       background-color: rgba(255, 255, 255, 0.2);
@@ -79,9 +89,11 @@
       text-align: center;
       color: white;
       padding: 0 20px;
+      animation: fadeIn 2s ease-out;
     }
     .hero-section h1 {
       font-size: 3em;
+      animation: fadeInDown 1.5s;
     }
     .about-content {
       max-width: 900px;
@@ -93,11 +105,13 @@
       color: #2E8B57;
       margin-bottom: 20px;
       text-align: center;
+      animation: zoomIn 1.5s;
     }
     .about-content p {
       font-size: 1.1em;
       text-align: justify;
       margin-bottom: 20px;
+      animation: fadeInUp 1s ease forwards;
     }
     .highlight-box {
       background: white;
@@ -105,10 +119,67 @@
       box-shadow: 0 4px 12px rgba(0,0,0,0.08);
       padding: 25px;
       margin-top: 40px;
+      animation: fadeInUp 1.5s ease forwards;
     }
     .highlight-box h3 {
       color: #E85D04;
       margin-bottom: 10px;
+    }
+    .contact-fab {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 999;
+    }
+    .main-btn {
+      background: #25D366;
+      color: white;
+      font-size: 28px;
+      width: 56px;
+      height: 56px;
+      border: none;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
+    }
+    .main-btn:hover {
+      transform: rotate(90deg);
+    }
+    .contact-options {
+      display: none;
+      flex-direction: column;
+      align-items: flex-end;
+      margin-bottom: 10px;
+      gap: 10px;
+    }
+    .contact-options.active {
+      display: flex;
+      animation: fadeInRight 0.5s;
+    }
+    .contact-options a {
+      background: white;
+      color: black;
+      padding: 8px 12px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 14px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      display: flex;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+    .contact-options a:hover {
+      transform: translateX(-5px);
+    }
+    .contact-options a img {
+      width: 20px;
+      height: 20px;
+      margin-right: 8px;
+      object-fit: contain;
     }
   </style>
 </head>
@@ -120,9 +191,9 @@
   <div class="menu-overlay" id="menuOverlay">
     <span class="close-btn" onclick="toggleMenu()">×</span>
     <a href="index.html">HOME</a>
-    <a href="bookaroom.html">BOOK A ROOM</a>
-    <a href="about.html">ABOUT</a>
-    <a href="contact.html">CONTACT</a>
+    <a href="Resort.html">BOOK A ROOM</a>
+    <a href="About.html">ABOUT</a>
+    <a href="Contact.html">CONTACT</a>
   </div>
 
   <section class="hero-section">
@@ -132,15 +203,34 @@
   <section class="about-content">
     <h2>deRos Resort & Cafe</h2>
     <p><strong>deRos Resort & Cafe</strong> adalah destinasi sempurna untuk beristirahat dari hiruk pikuk kota. Terletak di kawasan Ciawi yang sejuk dan asri, kami menawarkan perpaduan harmonis antara kenyamanan modern dan keindahan alam. Setiap kamar dirancang dengan sentuhan arsitektur tradisional, menghadirkan suasana damai dan tenang.</p>
-
     <p>Kami hadir untuk memberikan pengalaman menginap terbaik, baik untuk liburan keluarga, acara kantor, hingga momen romantis. Dengan fasilitas lengkap seperti kolam renang, sarapan gratis, lapangan basket, dan area cafe estetik, kami siap menyambut Anda dengan keramahan khas deRos.</p>
-
-    
+    <div class="highlight-box">
+      <h3>Misi Kami</h3>
+      <p>Menyediakan tempat peristirahatan terbaik yang menyatu dengan alam dan kenyamanan, serta memberikan pelayanan hangat dan berkualitas bagi semua tamu kami.</p>
+    </div>
   </section>
+
+  <div class="contact-fab">
+    <div class="contact-options" id="contactOptions">
+      <a href="https://wa.me/628129026927" target="_blank">
+        <img src="whatsapp.png" alt="WhatsApp"> WhatsApp
+      </a>
+      <a href="https://instagram.com/deros.resort" target="_blank">
+        <img src="instagram.png" alt="Instagram"> Instagram
+      </a>
+      <a href="https://facebook.com/deros.resort" target="_blank">
+        <img src="facebook.png" alt="Facebook"> Facebook
+      </a>
+    </div>
+    <button class="main-btn" onclick="toggleContactOptions()">+</button>
+  </div>
 
   <script>
     function toggleMenu() {
       document.getElementById('menuOverlay').classList.toggle('active');
+    }
+    function toggleContactOptions() {
+      document.getElementById('contactOptions').classList.toggle('active');
     }
   </script>
 </body>
